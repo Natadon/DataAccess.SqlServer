@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Kyle Parrish</Authors>
+    <Company>Natadon Technologies</Company>
+    <Copyright>2021</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Natadon/DataAccess.MySql</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Natadon/DataAccess.MySql</RepositoryUrl>
+    <PackageTags>DataAccess</PackageTags>
+    <Description>This is the SQL Server implementation of the Natadon data access core library</Description>
+
+    <Version>1.0.0</Version>
+
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+
+    <FileVersion>1.0.0.0</FileVersion>
+
+    <UserSecretsId>2daae659-983d-499f-bf33-787b7b6b6e44</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Natadon.DataAccess.Core" Version="1.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+</Project>

@@ -17,12 +17,18 @@
 
     <FileVersion>1.0.0.0</FileVersion>
 
-    <UserSecretsId>2daae659-983d-499f-bf33-787b7b6b6e44</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Natadon.DataAccess.Core" Version="1.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

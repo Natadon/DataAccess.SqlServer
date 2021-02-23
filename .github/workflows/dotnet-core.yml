@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore src/Natadon.DataAccess.SqlServer.csproj
+      run: dotnet restore src/Natadon.DataAccess.SqlServer/Natadon.DataAccess.SqlServer.csproj
     - name: Build
-      run: dotnet build src/Natadon.DataAccess.SqlServer.csproj --configuration Release --no-restore
+      run: dotnet build src/Natadon.DataAccess.SqlServer/Natadon.DataAccess.SqlServer.csproj --configuration Release --no-restore
     - name: Publish DataAccess.SqlServer
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
-        PROJECT_FILE_PATH: src/Natadon.DataAccess.SqlServer.csproj
+        PROJECT_FILE_PATH: src/Natadon.DataAccess.SqlServer/Natadon.DataAccess.SqlServer.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}

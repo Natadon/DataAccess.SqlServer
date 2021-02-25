@@ -8,12 +8,30 @@ namespace Natadon.DataAccess.SqlServer
 {
     public class SqlServerDataAccess : IDataAccess
     {
+        // The connection string for this connection
         private readonly string connectionString;
+
+        // the SqlCommand used to connection to the database
         private SqlCommand command;
+
+        // The connection to the server
         private SqlConnection connection;
+
+        // The data adapter to conver the results to System.Data.DataSets
         private SqlDataAdapter dataAdapter;
 
-        public SqlServerDataAccess(string ServerName, string DatabaseName, string UserName = "", string Password = "")
+        // The command timeout (in seconds)
+        int commandTimeout = 30;
+
+        /// <summary>
+        /// Create an instance of the DataAccess object
+        /// </summary>
+        /// <param name="ServerName">The name (or IP) of the server to connect to</param>
+        /// <param name="DatabaseName">The name of the database to use</param>
+        /// <param name="UserName">The optional username to use to authenticate to the server</param>
+        /// <param name="Password">The optional password to use to authenticate to the server</param>
+        /// <param name="CommandTimeOut">The timeout period (in seconds) for the commands to run</param>
+        public SqlServerDataAccess(string ServerName, string DatabaseName, string UserName = "", string Password = "", int CommandTimeOut = 30)
         {
             if(UserName == "")
             {
@@ -25,6 +43,7 @@ namespace Natadon.DataAccess.SqlServer
             }
 
             connection = new SqlConnection(connectionString);
+            commandTimeout = CommandTimeOut;
         }
 
         public void ExecuteQuery(string SqlStatement, List<DataAccessParameter> Params = null)
@@ -34,6 +53,7 @@ namespace Natadon.DataAccess.SqlServer
             try
             {
                 command = new SqlCommand(SqlStatement, connection);
+                command.CommandTimeout = commandTimeout;
 
                 if(Params != null)
                 {
@@ -63,6 +83,7 @@ namespace Natadon.DataAccess.SqlServer
             try
             {
                 command = new SqlCommand(SqlStatement, connection);
+                command.CommandTimeout = commandTimeout;
 
                 if (Params != null)
                 {
@@ -97,8 +118,9 @@ namespace Natadon.DataAccess.SqlServer
             try
             {
                 command = new SqlCommand(SqlStatement, connection);
+                command.CommandTimeout = commandTimeout;
 
-                if(Params != null)
+                if (Params != null)
                 {
                     List<SqlParameter> sqlParameters = getParams(Params);
 
@@ -119,6 +141,11 @@ namespace Natadon.DataAccess.SqlServer
             }
         }
 
+        /// <summary>
+        /// Converts the DataAccessParameters to SqlParameters
+        /// </summary>
+        /// <param name="accessParameters"></param>
+        /// <returns></returns>
         private List<SqlParameter> getParams(List<DataAccessParameter> accessParameters)
         {
             List<SqlParameter> retVal = new List<SqlParameter>();
